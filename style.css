@@ -1,0 +1,153 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+header {
+    background-color: #171347;
+    text-align: center;
+    padding: 10px;
+}
+header p {
+    font-weight: 400;
+    color: white;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    margin: 0 80px;
+    column-gap: 10px;
+}
+.atas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 10px;
+}
+.atas img {
+    width: 40px;
+}
+.atas p {
+    font-size: 14pt;
+    font-weight: 600;
+    color: #008AFF;
+
+}
+.bawah {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+.bawah .kiri p:nth-child(1) {
+    font-size: 32pt;
+    font-weight: 500;
+    color: #162C5B;
+}
+.bawah .kiri p:nth-child(2) {
+    margin-top: 10px;
+    font-size: 12pt;
+    font-weight: 500;
+    color: #77859A;
+}
+.bawah img {
+    width: 500px;
+}
+.button {
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 20px;
+    margin-top: 30px;
+    box-shadow: 1px 1px 4px lightgray;
+    cursor: pointer;
+}
+#isiPeminatan {
+    border: 1px solid #008AFF;
+    background-color: #008AFF;
+    color: aliceblue;
+}
+#daftarDiri {
+    background-color: #F0F0F0;
+    border: 1px solid #F0F0F0;
+    color: black;
+}
+#daftarDiri:hover {
+    border: 1px solid #008AFF;
+    background-color: white;
+    color: #008AFF;
+}
+.kiri > p > span:nth-child(1) {
+    color: #FFA400;
+}
+.kiri > p > span:nth-child(2) {
+    color: #008AFF;
+}
+.popUp {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 15px;
+    width: 450px;
+    padding: 20px;
+    z-index: 999;
+    box-shadow: 0px 1px 10px gray;
+    color: gray;
+}
+
+.containterPopUp {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.judulPopUp {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #162C5B;
+    font-size: 13pt;
+    font-weight: 500;
+}
+.judulPopUp img {
+    width: 30px;
+}
+.isiPopUp {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.isiPopUp p:nth-child(1) {
+    font-size: 18pt;
+}
+td {
+    font-size: 10pt;
+}
+.isiPopUp p:last-child {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 10pt;
+}
+.isiPopUp p:last-child span {
+    font-weight: 600;
+}
+.buttonPopUp {
+    display: flex;
+    justify-content: flex-end;
+}
+#closePopUp {
+    border: none;
+    border-radius: 10px;
+    color: #77859A;
+    padding: 5px 20px;
+    background: none;
+    cursor: pointer;
+}
+#closePopUp:hover {
+    background-color: #F0F0F0;
+    color: #162C5B;
+}
