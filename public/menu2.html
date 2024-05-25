@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pengisian Peminatan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style/menu2.css">
+</head>
+<body>
+    <div class="container">
+        <div class="atas">
+            <p>FORM PENGISIAN PEMINTAAN KEAHLIAN 
+                FAKULTAS ILMU KOMPUTER UPN VETERAN 
+                JAKARTA
+            </p>
+            <img src="/assets/img/logo-UPNVJ.png" alt="">
+        </div>
+        <div class="bawah">
+            <div class="form">
+                <div class="nim">
+                    <input type="text" name="nim" id="nim" placeholder="NIM Mahasiswa">
+                </div>          
+                <div class="nama">
+                    <input type="text" name="nama" id="nama" placeholder="Nama Mahasiswa">
+                </div>  
+                <div class="semester">
+                    <input type="number" name="semester" id="semester" placeholder="Semester Mahasiswa">
+                </div>  
+                <div class="prodi">
+                    <label for="prodi">Pilih Program Studi:</label><br>
+                    <select name="prodi" id="prodi">
+                        <option value="" disabled selected>Pilih Program Studi</option>
+                        <option value="d3_si">D3 Sistem Informasi</option>
+                        <option value="s1_si">S1 Sistem Informasi</option>
+                        <option value="s1_if">S1 Informatika</option>
+                    </select>
+                </div> 
+                <div class="selected" id="selected_d3_si">
+                    <fieldset>
+                        <legend>Peminataan Mahasiswa D3 Sistem Informasi</legend>
+                        <div class="container_form">
+                            <label for="mobileProg">Mobile Programmer</label>
+                            <input type="checkbox" name="selectD3" id="mobileProg">
+                        </div>
+                        <div class="container_form">
+                            <label for="webDev">Web Developer</label>
+                            <input type="checkbox" name="selectD3" id="webDev">
+                        </div>
+                    </fieldset>
+                </div> 
+                <div class="selected" id="selected_s1_si">
+                    <fieldset>
+                        <legend>Peminataan Mahasiswa S1 Sistem Informasi</legend>
+                        <div class="container_form">
+                            <label for="appDev">Application Developer</label>
+                            <input type="checkbox" name="selectS1Si" id="appDev">
+                        </div>
+                        <div class="container_form">
+                            <label for="dataAnalyst">Data Analyst</label>
+                            <input type="checkbox" name="selectS1Si" id="dataAnalyst">
+                        </div>
+                        <div class="container_form">
+                            <label for="auditSisfor">Audit Sistem Informasi</label>
+                            <input type="checkbox" name="selectS1Si" id="auditSisfor">
+                        </div>
+                    </fieldset>
+                </div> 
+                <div class="selected" id="selected_s1_if">
+                    <fieldset>
+                        <legend>Peminataan Mahasiswa S1 Informatika</legend>
+                        <div class="container_form">
+                            <label for="gameDev">Game Developer</label>
+                            <input type="checkbox" name="selectS1If" id="gameDev">
+                        </div>
+                        <div class="container_form">
+                            <label for="dataScience">Data Science</label>
+                            <input type="checkbox" name="selectS1If" id="dataScience">
+                        </div>
+                    </fieldset>
+                </div> 
+                <div class="buttons">
+                    <button type="button" id="submit">Submit</button>
+                    <button type="button" id="home">Kembali ke Home</button>
+                </div>                   
+            </div>
+        </div>
+    </div>
+    <script>
+        const prodi = document.getElementById('prodi');
+        const selected_s1_if = document.getElementById('selected_s1_if');
+        const selected_s1_si = document.getElementById('selected_s1_si');
+        const selected_d3_si = document.getElementById('selected_d3_si');
+
+        // menampilkan prodi
+        prodi.addEventListener('change', function() {
+            selected_s1_if.style.display = 'none';
+            selected_s1_si.style.display = 'none';
+            selected_d3_si.style.display = 'none';
+
+            if (prodi.value === 'd3_si') {
+                selected_d3_si.style.display = 'block';
+            } else if (prodi.value === 's1_si') {
+                selected_s1_si.style.display = 'block';
+            } else if (prodi.value === 's1_if') {
+                selected_s1_if.style.display = 'block';
+            }
+        });
+
+        // submit
+        submit.addEventListener('click', function() {
+            // validasi semester
+            const semester = document.getElementById('semester');
+            if (semester.value <= 2) {
+                alert(`Mahasiswa Belum bisa mengajukan permintaan!\nHarus semester 2 ke atas!`)
+            } else {
+
+            }
+        })
+        // kembali ke home
+        const bHome = document.getElementById('home');
+        bHome.addEventListener('click', function() {
+            window.location.href = '/index.html';
+        })
+    </script>
+</body>
+</html>

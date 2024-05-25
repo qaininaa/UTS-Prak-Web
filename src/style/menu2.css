@@ -1,0 +1,71 @@
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    background-color: #435666;
+}
+.container {
+    box-shadow: 0 0 4px gray;
+    width: 450px;
+    margin: 20px auto;
+}
+.atas {
+    text-align: center;
+    padding: 20px;
+    background-color: #008AFF;
+    color: white;
+}
+img {
+    width: 50px;
+}
+.bawah {
+    padding: 20px;
+    background-color: #F0F0F0;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.form > div > input {
+    width: 100%;
+    padding: 10px;
+}
+.prodi label {
+    font-size: 11pt;
+}
+.prodi select {
+    width: 100%;
+    padding: 10px;
+}
+fieldset {
+    padding: 5px;
+}
+legend, fieldset label {
+    font-size: 10pt;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.buttons button {
+    width: 100%;
+    padding: 10px;
+    color: aliceblue;
+    background-color: #008AFF;
+    border: 1px solid #008AFF;
+    cursor: pointer;
+}
+.container_form {
+    display: flex;
+    gap: 10px;
+
+}
+.selected {
+    display: none;
+}

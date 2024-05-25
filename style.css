@@ -10,6 +10,10 @@ header {
     text-align: center;
     padding: 10px;
 }
+header a {
+    text-decoration: underline;
+    color: white;
+}
 header p {
     font-weight: 400;
     color: white;
@@ -57,7 +61,7 @@ main {
     width: 500px;
 }
 .button {
-    border-radius: 10px;
+    border-radius: 8px;
     text-align: center;
     padding: 10px 20px;
     margin-top: 30px;
@@ -88,7 +92,7 @@ main {
 .popUp {
     display: none;
     position: fixed;
-    top: 50%;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -150,4 +154,9 @@ td {
 #closePopUp:hover {
     background-color: #F0F0F0;
     color: #162C5B;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
 }

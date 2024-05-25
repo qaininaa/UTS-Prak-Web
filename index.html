@@ -8,16 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <header>
-        <p>Ini adalah Ujian Tengah Semester Pemograman Web. Klik
-            ini untuk ke laman Fakultas Ilmu Komputer UPN Veteran
+        <p>Ini adalah Ujian Tengah Semester Pemograman Web. <a href="https://new-fik.upnvj.ac.id/">Klik ini</a>
+            untuk ke laman Fakultas Ilmu Komputer UPN Veteran
             Jakarta
         </p>
     </header>
     <main>
         <div class="container atas">
-            <img src="logo-UPNVJ.png" alt="">
+            <img src="assets/img/logo-UPNVJ.png" alt="">
             <p>Sistem Peminataan Fakultas Ilmu Komputer Universitas 
                 Pembangunan Nasional Veteran Jakarta.
             </p>
@@ -30,19 +31,19 @@
                 <p>Sistem ini untuk sebagai tolak ukur pemahaman
                     diri saya terhadap pemograman web sistem informasi.
                 </p>
-                <div>
+                <div class="buttons">
                     <button type="button" class="button" id="isiPeminatan">Mulai Mengisi Peminataan ></button>
                     <button type="button" class="button" id="daftarDiri">Daftar Diri</button>
                 </div>
             </div>
-            <img src="FIK-UPNVJ.png" alt="">
+            <img src="assets/img/FIK-UPNVJ.png" alt="">
         </div>
     </main>
     <div class="popUp">
         <div class="containterPopUp">
             <div class="judulPopUp">
                 <p>Daftar Diri UPN Veteran Jakarta</p>
-                <img src="logo-UPNVJ.png" alt="">
+                <img src="assets/img/logo-UPNVJ.png" alt="">
             </div><hr>
             <div class="isiPopUp">
                 <p>Mahasiswa Sistem Informasi Ilmu Komputer</p>
@@ -90,6 +91,12 @@
         closePopUp.addEventListener('click', function() {
             popUp.style.display = 'none';
             daftarDiri.removeAttribute('style');
+        })
+
+        // tombol isi Peminatan 
+        const isiPeminatan = document.getElementById('isiPeminatan');
+        isiPeminatan.addEventListener('click', function() {
+            window.location.href = 'public/menu2.html';
         })
     </script>
 </body>
