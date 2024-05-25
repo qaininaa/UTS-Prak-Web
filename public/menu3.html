@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Pengajuan Peminatan Mahasiswa</title>
+    <style>
+        .judul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        img {
+            width: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>Hasil Pengajuan Peminataan Mahasiswa</legend>
+        <div class="judul">
+            <p>UPN Veteran Jakarta</p>
+            <img src="/assets/img/logo-UPNVJ.png" alt="">
+        </div>
+        <table>
+            <tr>
+                <td>NIM</td>
+                <td>:</td>
+                <td id="nimValue"></td>
+            </tr>
+            <tr>
+                <td>Nama</td>
+                <td>:</td>
+                <td id="namaValue"></td>
+            </tr>
+            <tr>
+                <td>Lab</td>
+                <td>:</td>
+                <td id="labValue"></td>
+                </tr>
+                <tr>
+                    <td>Tahun Masuk</td>
+                    <td>:</td>
+                    <td id="tahunValue"></td>
+                </tr>
+            </table>
+            <p>Matakuliah yang di pilih:</p>
+            <ul></ul>
+        </fieldset>
+        <script>
+        
+            class Biodata {
+                constructor(nim, nama, semester, prodi) {
+                    this.nim = nim;
+                    this.nama = nama;
+                    this.semester = semester;
+                    this.prodi = prodi;
+                    this.tahunMasuk = getTahunMasuk(semester);
+                }
+            }
+            function getTahunMasuk(semester) {
+                const currentYear = new Date().getFullYear();
+                
+                if (semester <= 4 && semester > 2) {
+                    return currentYear - 2;
+                } else if (semester <= 6) {
+                    return currentYear - 3;
+                } else if (semester <= 8) {
+                    return currentYear - 4;
+                } else if (semester <= 10) {
+                    return currentYear - 5;
+                } else {
+                    return 'Semester tidak valid, seharus anda sudah lulus';
+                }
+            }
+    
+            class Person extends Biodata {
+                constructor(nim, nama, semester, prodi) {
+                    super(nim, nama, semester, prodi);
+                }
+    
+                displayData() {
+                    document.getElementById('nimValue').innerText = this.nim;
+                    document.getElementById('namaValue').innerText = this.nama;
+                    document.getElementById('labValue').innerText = this.prodi;
+                    document.getElementById('tahunValue').innerText = this.tahunMasuk;
+                }
+            }
+    
+            // Mengambil objek biodata dari window
+            const biodata = window.opener.biodata;
+    
+            if (biodata) {
+                const person = new Person(biodata.nim, biodata.nama, biodata.semester, biodata.prodi);
+                person.displayData();
+            } 
+        </script>
+    </body>
+    </html>
+    
