@@ -14,12 +14,11 @@
         img {
             width: 40px;
         }
-
     </style>
 </head>
 <body>
     <fieldset>
-        <legend>Hasil Pengajuan Peminataan Mahasiswa</legend>
+        <legend>Hasil Pengajuan Peminatan Mahasiswa</legend>
         <div class="judul">
             <p>UPN Veteran Jakarta</p>
             <img src="/assets/img/logo-UPNVJ.png" alt="">
@@ -39,64 +38,74 @@
                 <td>Lab</td>
                 <td>:</td>
                 <td id="labValue"></td>
-                </tr>
-                <tr>
-                    <td>Tahun Masuk</td>
-                    <td>:</td>
-                    <td id="tahunValue"></td>
-                </tr>
-            </table>
-            <p>Matakuliah yang di pilih:</p>
-            <ul></ul>
-        </fieldset>
-        <script>
-        
-            class Biodata {
-                constructor(nim, nama, semester, prodi) {
-                    this.nim = nim;
-                    this.nama = nama;
-                    this.semester = semester;
-                    this.prodi = prodi;
-                    this.tahunMasuk = getTahunMasuk(semester);
-                }
+            </tr>
+            <tr>
+                <td>Tahun Masuk</td>
+                <td>:</td>
+                <td id="tahunValue"></td>
+            </tr>
+        </table>
+        <p>Matakuliah yang dipilih:</p>
+        <ul id="subjectsList"></ul>
+    </fieldset>
+    <script>
+        // Fungsi untuk mengambil tahun masuk berdasarkan semester
+        function getTahunMasuk(semester) {
+            const currentYear = new Date().getFullYear();
+            if (semester <= 4 && semester > 2) {
+                return currentYear - 2;
+            } else if (semester <= 6) {
+                return currentYear - 3;
+            } else if (semester <= 8) {
+                return currentYear - 4;
+            } else if (semester <= 10) {
+                return currentYear - 5;
+            } else {
+                return 'Semester tidak valid, seharusnya anda sudah lulus';
             }
-            function getTahunMasuk(semester) {
-                const currentYear = new Date().getFullYear();
+        }
+
+        // Class Biodata
+        class Biodata {
+            constructor(nim, nama, semester, prodi, subjects) {
+                this.nim = nim;
+                this.nama = nama;
+                this.semester = semester;
+                this.prodi = prodi;
+                this.subjects = subjects;
+                this.tahunMasuk = getTahunMasuk(semester);
+            }
+        }
+
+        // Class Person yang mewarisi dari Biodata
+        class Person extends Biodata {
+            constructor(nim, nama, semester, prodi, subjects) {
+                super(nim, nama, semester, prodi, subjects);
+            }
+
+            // Method untuk menampilkan data pada halaman hasil
+            displayData() {
+                document.getElementById('nimValue').innerText = this.nim;
+                document.getElementById('namaValue').innerText = this.nama;
+                document.getElementById('labValue').innerText = this.prodi;
+                document.getElementById('tahunValue').innerText = this.tahunMasuk;
                 
-                if (semester <= 4 && semester > 2) {
-                    return currentYear - 2;
-                } else if (semester <= 6) {
-                    return currentYear - 3;
-                } else if (semester <= 8) {
-                    return currentYear - 4;
-                } else if (semester <= 10) {
-                    return currentYear - 5;
-                } else {
-                    return 'Semester tidak valid, seharus anda sudah lulus';
-                }
+                const subjectsList = document.getElementById('subjectsList');
+                this.subjects.forEach((subject) => {
+                    let li = document.createElement('li');
+                    li.innerText = subject;
+                    subjectsList.appendChild(li);
+                });
             }
-    
-            class Person extends Biodata {
-                constructor(nim, nama, semester, prodi) {
-                    super(nim, nama, semester, prodi);
-                }
-    
-                displayData() {
-                    document.getElementById('nimValue').innerText = this.nim;
-                    document.getElementById('namaValue').innerText = this.nama;
-                    document.getElementById('labValue').innerText = this.prodi;
-                    document.getElementById('tahunValue').innerText = this.tahunMasuk;
-                }
-            }
-    
-            // Mengambil objek biodata dari window
-            const biodata = window.opener.biodata;
-    
-            if (biodata) {
-                const person = new Person(biodata.nim, biodata.nama, biodata.semester, biodata.prodi);
-                person.displayData();
-            } 
-        </script>
-    </body>
-    </html>
-    
+        }
+
+        // Mengambil objek biodata dari window
+        const biodata = window.opener.biodata;
+
+        if (biodata) {
+            const person = new Person(biodata.nim, biodata.nama, biodata.semester, biodata.prodi, biodata.subjects);
+            person.displayData();
+        }
+    </script>
+</body>
+</html>

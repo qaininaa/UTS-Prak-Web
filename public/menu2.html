@@ -56,46 +56,46 @@
               <option value="s1_if">S1 Informatika</option>
             </select>
           </div>
-          <div class="selected" id="selected_d3_si">
+          <div class="selected" id="selected_d3_si" style="display: none;">
             <fieldset>
               <legend>Peminataan Mahasiswa D3 Sistem Informasi</legend>
               <div class="container_form">
                 <label for="mobileProg">Mobile Programmer</label>
-                <input type="checkbox" name="selectD3" id="mobileProg" />
+                <input type="checkbox" name="option" id="mobileProg" value="Mobile Programmer" />
               </div>
               <div class="container_form">
                 <label for="webDev">Web Developer</label>
-                <input type="checkbox" name="selectD3" id="webDev" />
+                <input type="checkbox" name="option" id="webDev" value="Web Developer" />
               </div>
             </fieldset>
           </div>
-          <div class="selected" id="selected_s1_si">
+          <div class="selected" id="selected_s1_si" style="display: none;">
             <fieldset>
               <legend>Peminataan Mahasiswa S1 Sistem Informasi</legend>
               <div class="container_form">
                 <label for="appDev">Application Developer</label>
-                <input type="checkbox" name="selectS1Si" id="appDev" />
+                <input type="checkbox" name="option" id="appDev" value="Application Developer" />
               </div>
               <div class="container_form">
                 <label for="dataAnalyst">Data Analyst</label>
-                <input type="checkbox" name="selectS1Si" id="dataAnalyst" />
+                <input type="checkbox" name="option" id="dataAnalyst" value="Data Analyst" />
               </div>
               <div class="container_form">
                 <label for="auditSisfor">Audit Sistem Informasi</label>
-                <input type="checkbox" name="selectS1Si" id="auditSisfor" />
+                <input type="checkbox" name="option" id="auditSisfor" value="Audit Sistem Informasi" />
               </div>
             </fieldset>
           </div>
-          <div class="selected" id="selected_s1_if">
+          <div class="selected" id="selected_s1_if" style="display: none;">
             <fieldset>
               <legend>Peminataan Mahasiswa S1 Informatika</legend>
               <div class="container_form">
                 <label for="gameDev">Game Developer</label>
-                <input type="checkbox" name="selectS1If" id="gameDev" />
+                <input type="checkbox" name="option" id="gameDev" value="Game Developer" />
               </div>
               <div class="container_form">
                 <label for="dataScience">Data Science</label>
-                <input type="checkbox" name="selectS1If" id="dataScience" />
+                <input type="checkbox" name="option" id="dataScience" value="Data Science" />
               </div>
             </fieldset>
           </div>
@@ -112,7 +112,7 @@
       const selected_s1_si = document.getElementById("selected_s1_si");
       const selected_d3_si = document.getElementById("selected_d3_si");
 
-      // menampilkan prodi
+      // Menampilkan form sesuai dengan pilihan prodi
       prodi.addEventListener("change", function () {
         selected_s1_if.style.display = "none";
         selected_s1_si.style.display = "none";
@@ -131,38 +131,48 @@
       const namaForm = document.getElementById("nama");
       const semesterForm = document.getElementById("semester");
 
-      // fungsi menghitung tahun masuk berdasarkan semester
+      // Fungsi menghitung tahun masuk berdasarkan semester
       function getTahunMasuk(semester) {
-        if (semester === 3 || semester === 4) {
-          return 2022;
-        } else if (semester === 5 || semester === 6) {
-          return 2021;
-        } else if (semester === 7 || semester === 8) {
-          return 2020;
-        } else if (semester === 9 || semester === 10) {
-          return 2019;
+        const currentYear = new Date().getFullYear();
+        if (semester <= 4 && semester > 2) {
+          return currentYear - 2;
+        } else if (semester <= 6) {
+          return currentYear - 3;
+        } else if (semester <= 8) {
+          return currentYear - 4;
+        } else if (semester <= 10) {
+          return currentYear - 5;
         } else {
-          return "ok";
+          return "Semester tidak valid, seharusnya anda sudah lulus";
         }
       }
 
-      // tombol submit
+      // Fungsi untuk mengambil nilai checkbox yang dipilih
+      function getSelectedCheckboxes() {
+        const checkboxes = document.querySelectorAll('input[name="option"]:checked');
+        let selectedValues = [];
+        checkboxes.forEach((checkbox) => {
+          selectedValues.push(checkbox.value);
+        });
+        return selectedValues;
+      }
+
+      // Tombol submit
       const submitButton = document.getElementById("submit");
       submitButton.addEventListener("click", function () {
-        // validasi semester
+        // Validasi semester
         const semester = parseInt(semesterForm.value);
         if (semester <= 2) {
-          alert(
-            `Mahasiswa Belum bisa mengajukan permintaan!\nHarus semester 2 ke atas!`
-          );
+          alert(`Mahasiswa belum bisa mengajukan permintaan!\nHarus semester 2 ke atas!`);
         } else {
-          // class Biodata
+          // Class Biodata
           class Biodata {
             constructor(nim, nama, semester, prodi) {
               this.nim = nim;
               this.nama = nama;
               this.semester = semester;
               this.prodi = prodi;
+              this.subjects = getSelectedCheckboxes();
               this.tahunMasuk = getTahunMasuk(semester);
             }
           }
@@ -182,7 +192,7 @@
         }
       });
 
-      // kembali ke home
+      // Kembali ke home
       const homeButton = document.getElementById("home");
       homeButton.addEventListener("click", function () {
         window.location.href = "/index.html";
